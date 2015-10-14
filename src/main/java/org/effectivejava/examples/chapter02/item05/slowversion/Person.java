@@ -26,4 +26,9 @@ public class Person {
 		return birthDate.compareTo(boomStart) >= 0
 				&& birthDate.compareTo(boomEnd) < 0;
 	}
+        
+        public static void main(String args[]){
+            Person person= new Person(new Date(1947));
+            System.out.println("is baby boomer: "+person.isBabyBoomer());
+        }
 }

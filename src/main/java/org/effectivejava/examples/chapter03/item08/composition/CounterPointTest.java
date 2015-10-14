@@ -1,7 +1,6 @@
 // Test program that uses CounterPoint as Point
-package org.effectivejava.examples.chapter03.item08;
+package org.effectivejava.examples.chapter03.item08.composition;
 
-import org.effectivejava.examples.chapter03.item08.composition.*;
 import java.util.HashSet;
 import java.util.Set; 
 
@@ -10,10 +9,10 @@ public class CounterPointTest {
 	private static final Set<Point> unitCircle;
 	static {
 		unitCircle = new HashSet<Point>();
-		unitCircle.add(new CounterPoint(1, 0));
-		unitCircle.add(new ColorPoint(0, 1,Color.BLUE));
-		unitCircle.add(new CounterPoint(-1, 0));
-		unitCircle.add(new ColorPoint(0, -1,null));
+		unitCircle.add(new Point(1, 0));
+		unitCircle.add(new Point(0, 1));
+		unitCircle.add(new Point(-1, 0));
+		unitCircle.add(new Point(0, -1));
 	}
 
 	public static boolean onUnitCircle(Object p) {
@@ -22,16 +21,16 @@ public class CounterPointTest {
 	}
 
 	public static void main(String[] args) {
-		Point p1 = new ColorPoint(0, -1,null);
-                Point cp= new ColorPoint(0,1, Color.BLUE);
-		Point p2 = new CounterPoint(1, 0);
+		Point p1 = new Point(1, 0);
+                ColorPoint cp= new ColorPoint(1,0, Color.BLUE);
+		CounterPoint p2 = new CounterPoint(1, 0);
                 
- 		System.out.println("cp: "+onUnitCircle(cp));
+ 		System.out.println("cp: "+onUnitCircle(cp.asPoint()));
 
 		// Prints true
 		System.out.println("p1: "+onUnitCircle(p1));
 
 		// Should print true, but doesn't if Point uses getClass-based equals
-		System.out.println("p2: "+onUnitCircle(p2));
+		System.out.println("p2: "+onUnitCircle(p2.asPoint()));
 	}
 }

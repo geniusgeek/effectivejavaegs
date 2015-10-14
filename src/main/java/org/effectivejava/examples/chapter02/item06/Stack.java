@@ -19,8 +19,10 @@ public class Stack {
 
 	public Object pop() {
 		if (size == 0)
-			throw new EmptyStackException();
-		return elements[--size];
+			throw new EmptyStackException(" cannot remove from an empty stack");
+		Object toReturn= elements[--size];
+                elements[size+1]=null;//eliminate obsolete object reference
+                return toReturn;
 	}
 
 	/**

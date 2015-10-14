@@ -1,7 +1,11 @@
 // Serializable singleton with public final field - Page 18
 package org.effectivejava.examples.chapter02.item03.serializable;
 
-public class Elvis {
+import java.io.Serializable;
+
+public class Elvis implements Serializable{
+     private static final long serialVersionUID=1l;
+    
 	public static final Elvis INSTANCE = new Elvis();
 
 	private Elvis() {
@@ -10,7 +14,6 @@ public class Elvis {
 	public void leaveTheBuilding() {
 		System.out.println("Whoa baby, I'm outta here!");
 	}
-
 	private Object readResolve() {
 		// Return the one true Elvis and let the garbage collector
 		// take care of the Elvis impersonator.

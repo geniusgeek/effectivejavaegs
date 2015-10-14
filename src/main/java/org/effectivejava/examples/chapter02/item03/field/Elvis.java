@@ -5,6 +5,8 @@ public class Elvis {
 	public static final Elvis INSTANCE = new Elvis();
 
 	private Elvis() {
+            throw new InstantiationError("you cannot instantiate this class");
+            //this prevents using pricate constructor to instantiate the class using 
 	}
 
 	public void leaveTheBuilding() {

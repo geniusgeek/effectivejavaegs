@@ -22,6 +22,7 @@ class Person {
 	private static final Date BOOM_END;
 
 	static {
+            //static innitializer
 		Calendar gmtCal = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
 		gmtCal.set(1946, Calendar.JANUARY, 1, 0, 0, 0);
 		BOOM_START = gmtCal.getTime();
@@ -33,4 +34,8 @@ class Person {
 		return birthDate.compareTo(BOOM_START) >= 0
 				&& birthDate.compareTo(BOOM_END) < 0;
 	}
+         public static void main(String args[]){
+           Person person= new  Person(new Date(1946));
+            System.out.println("is baby boomer: "+person.isBabyBoomer());
+        }
 }

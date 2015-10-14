@@ -1,6 +1,9 @@
 // Builder Pattern - Pages 14-15
 package org.effectivejava.examples.chapter02.item02.builder;
 
+import org.effectivejava.examples.chapter02.item02.builder.NutritionFacts.Builder;
+
+ 
 public class NutritionFacts {
 	private final int servingSize;
 	private final int servings;
@@ -8,8 +11,13 @@ public class NutritionFacts {
 	private final int fat;
 	private final int sodium;
 	private final int carbohydrate;
-
-	public static class Builder {
+        
+        
+    /**
+     *
+     * @param <T>
+     */
+    public static class  Builder<T extends NutritionFacts>  implements GenericBuilder<NutritionFacts> {
 		// Required parameters
 		private final int servingSize;
 		private final int servings;
@@ -45,20 +53,35 @@ public class NutritionFacts {
 			return this;
 		}
 
-		public NutritionFacts build() {
-			return new NutritionFacts(this);
+		public   NutritionFacts build() {
+			return new NutritionFacts( this);
 		}
+
+        
+           
 	}
 
-	private NutritionFacts(Builder builder) {
-		servingSize = builder.servingSize;
+	 
+
+    /**
+     *
+     * @param builde
+     * @param builder
+     * @return
+     */
+         public   NutritionFacts (Builder<? extends NutritionFacts> builder) {
+ 		 servingSize = builder.servingSize;
 		servings = builder.servings;
 		calories = builder.calories;
 		fat = builder.fat;
 		sodium = builder.sodium;
 		carbohydrate = builder.carbohydrate;
-	}
-
+ 	}
+      
+         
+         public   NutritionFacts buildNutrition(GenericBuilder<? extends NutritionFacts> builder) {
+		return builder.build();
+ 	}
 	public static void main(String[] args) {
 		NutritionFacts cocaCola = new NutritionFacts.Builder(240, 8)
 				.calories(100).sodium(35).carbohydrate(27).build();
